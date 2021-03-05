@@ -1,0 +1,488 @@
+/*
+ * Variables
+ */
+:root {
+  --background-color: #1c1c22;
+
+  --title-font-size: 40px;
+  --title-offset-x: 76px;
+  --title-offset-y: 48px;
+  --title-color: #e3dde0;
+
+  --subtitle-font-size: 16px;
+  --subtitle-padding: 2px;
+  --subtitle-color: #e3dde0;
+
+  --menu-font-size: 20px;
+  --menu-padding: 5px;
+  --menu-offset-x: 76px;
+  --menu-color: #e3dde0;
+
+  --start-menu-font-size: 20px;
+  --start-menu-padding: 5px;
+  --start-menu-offset-x: 76px;
+  --start-menu-offset-y: calc(var(--title-offset-y));
+  --start-menu-color: #e3dde0;
+
+  --popup-background-color: #1c1c22;
+  --popup-color: #e3dde0;
+  --popup-border-color: #e3dde0;
+  --popup-border-width: 2px;
+  --popup-corner-radius: 5px;
+
+  --popup-close-color: #e3dde0;
+  --popup-close-background-color: #1c1c22;
+  --popup-close-border-color: #e3dde0;
+
+  --race-header-font-size: 20px;
+  --race-header-color: #e3dde0;
+
+  --race-status-font-size: 16px;
+  --race-status-color: #e3dde0;
+
+  --race-stats-font-size: 16px;
+  --race-stats-color: #e3dde0;
+
+  --race-name-font-size: 14px;
+  --race-name-color: #e3dde0;
+
+  --race-text-font-size: 20px;
+  --race-text-color: #e3dde0;
+  --race-text-correct-color: #b5d572;
+  --race-text-incorrect-color: #f2857d;
+
+  --race-input-font-size: 20px;
+  --race-input-color: #e3dde0;
+  --race-input-background-color: #1c1c22;
+  --race-input-error-color: #f2857d;
+  --race-input-error-background-color: #1c1c22;
+  --race-input-corner-radius: 5px;
+
+  --race-progress-color: #e3dde0;
+}
+
+/*
+ * Random shit
+ */
+
+.main {
+  background: none !important;
+}
+
+* {
+  text-decoration: none !important;
+  font-size: 100% !important;
+  list-style: none;
+}
+
+body,
+.main,
+.themeHeader {
+  background-color: var(--background-color) !important;
+}
+
+img.icon,
+.sidebarBlocks,
+.statsView,
+#gwtLoadingMessage,
+#tr_textHeader,
+.ImageButton,
+.footer,
+#aboutLink,
+#groupLink,
+#blogLink {
+  display: none !important;
+}
+
+table {
+  border-spacing: 0 !important;
+}
+
+/*
+ * Header/Title
+ */
+
+.themeHeader > tbody > tr > td.title {
+  padding: 0 !important;
+  margin: 0 !important;
+
+  display: block !important;
+
+  position: absolute !important;
+  top: var(--title-offset-y) !important;
+  left: var(--title-offset-x) !important;
+}
+
+.themeHeader > tbody > tr > td.title > h1 {
+  background-image: none !important;
+  padding: 0 !important;
+}
+
+.themeHeader > tbody > tr > td.title h1 a {
+  padding: 0 !important;
+  margin: 0 !important;
+
+  color: var(--title-color) !important;
+  font: normal var(--title-font-size) Metropolis !important;
+  text-transform: capitalize !important;
+}
+
+.themeHeader > tbody > tr > td.title > div.subTitle {
+  position: relative !important;
+  bottom: calc(
+    var(--title-font-size) + var(--subtitle-font-size) + var(--subtitle-padding)
+  );
+
+  color: var(--subtitle-color) !important;
+  font: normal var(--subtitle-font-size) Metropolis !important;
+}
+
+.themeHeader > tbody > tr > td.navigation a {
+  color: var(--menu-color) !important;
+  font: normal var(--menu-font-size) Metropolis !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  position: absolute !important;
+  left: var(--menu-offset-x) !important;
+  top: calc(
+    var(--title-offset-y) + var(--title-font-size) + var(--menu-padding)
+  ) !important;
+}
+
+.themeHeader > tbody > tr > td.navigation a:hover {
+  color: var(--menu-color) !important;
+  background-color: #00000000 !important;
+}
+
+/*
+ * Stats table
+ */
+#tstats > table.mainUserInfoBox > tbody > tr:not(.datarow),
+#tstats
+  > table.mainUserInfoBox
+  > tbody
+  > tr.datarow
+  > td:not(:nth-child(3)):not(:first-child) {
+  display: none !important;
+}
+
+#tstats > table.mainUserInfoBox > tbody > tr.datarow > td:nth-child(3) {
+  color: var(--menu-color) !important;
+  font: normal var(--menu-font-size) Metropolis !important;
+
+  position: absolute !important;
+  left: var(--menu-offset-x) !important;
+  top: calc(
+    var(--title-offset-y) + var(--title-font-size) + (var(--menu-padding) * 2) +
+      var(--menu-font-size)
+  ) !important;
+}
+
+#tstats
+  > table.mainUserInfoBox
+  > tbody
+  > tr.datarow
+  > td:nth-child(3)
+  > table
+  > tbody
+  > tr
+  > td {
+  padding-right: 3px !important;
+}
+
+#tstats
+  > table.mainUserInfoBox
+  > tbody
+  > tr.datarow
+  > td:nth-child(3)
+  > table
+  > tbody
+  > tr
+  > td
+  > a {
+  color: var(--menu-color) !important;
+}
+
+.mainUserInfoBox .MainUserInfoEditor a {
+  color: var(--menu-color) !important;
+  font: normal var(--menu-font-size) Metropolis !important;
+
+  position: absolute !important;
+  left: var(--menu-offset-x) !important;
+  top: calc(
+    var(--title-offset-y) + var(--title-font-size) + (var(--menu-padding) * 3) +
+      (var(--menu-font-size) * 2)
+  ) !important;
+}
+
+/*
+ * Start menu
+ */
+.mainMenu
+  > table
+  > tbody
+  > tr:nth-child(5)
+  > td
+  > table
+  > tbody
+  > tr:last-child
+  > td
+  > div
+  > ul
+  > li:not(:nth-child(2)),
+.mainMenuItem
+  > tbody
+  > tr
+  > td:last-child
+  > table.mainMenuItemText
+  > tbody
+  > tr:nth-child(2),
+.mainMenuAdUnit {
+  display: none !important;
+}
+
+.mainMenu > table > tbody > tr {
+  height: 0 !important;
+}
+
+.mainMenu
+  > table
+  > tbody
+  > tr
+  > td
+  > .mainMenuItem
+  > tbody
+  > tr
+  > td:nth-child(2)
+  > table
+  > tbody
+  > tr:nth-child(1)
+  > td
+  > a {
+  color: var(--start-menu-color) !important;
+  font: normal var(--start-menu-font-size) Metropolis !important;
+  text-transform: capitalize !important;
+
+  position: absolute !important;
+  right: var(--start-menu-offset-x) !important;
+  top: calc(
+    var(--start-menu-offset-y) + var(--start-menu-padding) +
+      var(--start-menu-font-size)
+  ) !important;
+}
+
+.mainMenu
+  > table
+  > tbody
+  > tr:nth-child(3)
+  > td
+  > .mainMenuItem
+  > tbody
+  > tr
+  > td:nth-child(2)
+  > table
+  > tbody
+  > tr:nth-child(1)
+  > td
+  > a {
+  top: calc(
+    var(--start-menu-offset-y) + (var(--start-menu-padding) * 2) +
+      (var(--start-menu-font-size) * 2)
+  ) !important;
+}
+
+.mainMenu
+  > table
+  > tbody
+  > tr:nth-child(4)
+  > td
+  > .mainMenuItem
+  > tbody
+  > tr
+  > td:nth-child(2)
+  > table
+  > tbody
+  > tr:nth-child(1)
+  > td
+  > a {
+  top: calc(
+    var(--start-menu-offset-y) + (var(--start-menu-padding) * 3) +
+      (var(--start-menu-font-size) * 3)
+  ) !important;
+}
+
+.mainMenu
+  > table
+  > tbody
+  > tr:nth-child(5)
+  > td
+  > table
+  > tbody
+  > tr:last-child
+  > td
+  > div
+  > ul
+  > li:nth-child(2)
+  > span
+  > * {
+  font: normal var(--menu-font-size) Metropolis !important;
+  color: var(--menu-color) !important;
+}
+
+.mainMenu
+  > table
+  > tbody
+  > tr:nth-child(5)
+  > td
+  > table
+  > tbody
+  > tr:last-child
+  > td
+  > div
+  > ul
+  > li:nth-child(2)
+  > span
+  > * {
+  text-transform: capitalize !important;
+}
+
+.mainMenu
+  > table
+  > tbody
+  > tr:nth-child(5)
+  > td
+  > table
+  > tbody
+  > tr:nth-child(1) {
+  display: none !important;
+}
+
+.mainMenu
+  > table
+  > tbody
+  > tr:nth-child(5)
+  > td
+  > table
+  > tbody
+  > tr:nth-child(2)
+  > td
+  > div
+  > ul
+  > li:nth-child(2)
+  > span {
+  font: normal var(--menu-font-size) Metropolis !important;
+  color: var(--menu-color) !important;
+
+  position: absolute !important;
+  right: var(--start-menu-offset-x) !important;
+  top: var(--start-menu-offset-y) !important;
+}
+
+/*
+ * Popup box
+ */
+.trPopupDialog {
+  background-color: var(--popup-background-color) !important;
+  color: var(--popup-color) !important;
+  border: var(--popup-border-width) solid !important;
+  border-radius: var(--popup-corner-radius) !important;
+  box-shadow: none !important;
+}
+
+.trPopupDialog a {
+  color: var(--popup-color) !important;
+}
+
+.trPopupDialog .xButton {
+  background-color: var(--popup-close-background-color) !important;
+  border: var(--popup-border-width) solid !important;
+  color: var(--popup-color) !important;
+  box-shadow: none !important;
+}
+
+/****************
+ *     Race     *
+ ****************/
+.roomSection {
+  background-color: var(--background-color) !important;
+}
+
+.roomSection td {
+  background: none !important;
+}
+
+.roomSection
+  > table
+  > tbody
+  > tr:nth-child(2)
+  > td:nth-child(3)
+  > table
+  > tbody
+  > tr
+  > td:nth-child(2)
+  > div
+  > table
+  > tbody
+  > tr
+  > td
+  > a,
+.room .room-title {
+  font-weight: normal !important;
+  font: normal var(--race-header-font-size) Metropolis !important;
+  color: var(--race-header-color) !important;
+  text-transform: capitalize !important;
+}
+
+.navControls > tbody > tr > td:nth-child(1),
+.inputPanel
+  > tbody
+  > tr:nth-child(1)
+  > td
+  > table
+  > tbody
+  > tr:nth-child(2)
+  > td,
+.roomSection > div > :not(table) {
+  display: none !important;
+}
+
+.navControls > tbody > tr > td:nth-child(2) > a,
+.gameStatusLabel,
+.gameView .timeDisplay .time {
+  font: normal var(--race-status-font-size) Metropolis !important;
+  color: var(--race-status-color) !important;
+}
+
+.rankPanel > div {
+  font: normal var(--race-stats-font-size) Metropolis !important;
+  color: var(--race-stats-color) !important;
+}
+
+.nameContainer {
+  font: normal var(--race-name-font-size) Metropolis !important;
+  color: var(--race-name-color) !important;
+}
+
+.inputPanel {
+  font: normal var(--race-text-font-size) Metropolis !important;
+  color: var(--race-text-color) !important;
+}
+
+.txtInput {
+  font: normal var(--race-input-font-size) Metropolis !important;
+  color: var(--race-input-color) !important;
+
+  background-color: var(--race-input-background-color) !important;
+  border: none !important;
+  border-radius: var(--race-input-corner-radius) !important;
+}
+
+.txtInput.txtInput-error {
+  color: var(--race-input-error-color) !important;
+  background-color: var(--race-input-error-background-color) !important;
+}
+
+.progressBar {
+    border-color: var(--race-progress-color) !important;
+}

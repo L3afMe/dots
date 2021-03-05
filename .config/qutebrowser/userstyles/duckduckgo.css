@@ -1,0 +1,12 @@
+:root {
+    --bg: #1C1C22;
+    --fg: #E3DDE0;
+}
+
+.body--home, .site-wrapper--home {
+    background: var(--bg) !important;
+}
+
+#search_form_homepage {
+    color: red !important;
+}

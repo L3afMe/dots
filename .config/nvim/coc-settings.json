@@ -1,0 +1,22 @@
+{
+    "go.goplsOptions": {
+        "codelenses": {
+            "gc_details": true
+        },
+        "analyses": {
+            "shadow": true,
+            "unusedparams": true,
+            "unusedresult": true,
+            "loopclosure": true,
+            "testinggoroutine": true,
+            "bools": true,
+            "tests": true,
+            "assign": true,
+            "shift": true,
+            "sortslice": true,
+            "nonewvars": true
+        },
+        "hoverKind": "Structured"
+    },
+    "Lua.intelliSense.searchDepth": 4
+}
