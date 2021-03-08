@@ -4,8 +4,10 @@ use path
 use str
 use math
 
+set E:LANG = us_NZ.UTF-8
+set E:LC_ALL = $E:LANG
+
 set E:QT_PLUGIN_PATH = /usr/lib/qt/plugins
-set E:QT_QPA_PLATFORM = wayland
 
 set E:GOPATH = ~/go
 
