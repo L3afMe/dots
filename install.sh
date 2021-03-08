@@ -71,10 +71,10 @@ done
 
 # Install neovim dependencies
 echo -e " -- Installing neovim dependencies"
-[ $(npm list -g | grep -q 'yarn') ]           && sudo npm install --global yarn
-[ $(npm list -g | grep -q 'neovim') ]         && sudo npm install --global neovim
-[ $(gem list | grep -q 'neovim') ]            && gem install neovim
-[ $(python3 -m pip list | grep -q 'pynvim') ] && python3 -m pip install pynvim
+npm list -g | grep -q 'yarn'           || sudo npm install --global yarn
+npm list -g | grep -q 'neovim'         || sudo npm install --global neovim
+gem list | grep -q 'neovim'            || gem install neovim
+python3 -m pip list | grep -q 'pynvim' || python3 -m pip install pynvim
 
 VIM_PLUG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload"
 if [ ! -d $VIM_PLUG_DIR ]
