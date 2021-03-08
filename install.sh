@@ -64,32 +64,17 @@ yay -Sq --batchinstall --sudoloop   --noupgrademenu \
 # Set default shell for all users
 echo -e " -- Setting default to Elvish"
 ELVISH_PATH=$(command -v elvish)
-for USER in $(cat /etc/passwd | grep -v -e 'nologin' -e 'git-shell' -e "$ELVISH_PATH" | sed 's/:.*//g')
+for USER in $(grep -v -e 'nologin' -e 'git-shell' -e "$ELVISH_PATH" /etc/passwd | sed 's/:.*//g')
 do
 	sudo chsh --shell $ELVISH_PATH $USER
 done
 
 # Install neovim dependencies
 echo -e " -- Installing neovim dependencies"
-if [ $(npm list -g | grep 'yarn' | wc -l) == 0 ]
-then
-	sudo npm install --global yarn
-fi
-
-if [ $(npm list -g | grep 'neovim' | wc -l) == 0 ]
-then
-	sudo npm install --global neovim
-fi
-
-if [ $(gem list | grep 'neovim' | wc -l) == 0 ]
-then
-	gem install neovim
-fi
-
-if [ $(python3 -m pip list | grep 'pynvim' | wc -l) == 0 ]
-then
-	python3 -m pip install pynvim
-fi
+[ $(npm list -g | grep 'yarn' | wc -l) == 0 ]           || sudo npm install --global yarn
+[ $(npm list -g | grep 'neovim' | wc -l) == 0 ]         || sudo npm install --global neovim
+[ $(gem list | grep 'neovim' | wc -l) == 0 ]            || gem install neovim
+[ $(python3 -m pip list | grep 'pynvim' | wc -l) == 0 ] || python3 -m pip install pynvim
 
 VIM_PLUG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload"
 if [ ! -d $VIM_PLUG_DIR ]
