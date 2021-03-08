@@ -199,16 +199,9 @@ settings:
   content.javascript.can_access_clipboard:
     global: true
   content.javascript.enabled:
-    '*://duckduckgo.com/*': true
-    '*://html.duckduckgo.com/*': false
-    '*://lord.re/*': false
-    '*://play.typeracer.com/*': true
-    '*://www.asb.co.nz/*': true
     global: true
   content.notifications:
-    https://www.reddit.com: false
-  content.user_stylesheets:
-    global: ~/.config/qutebrowser/userstyles.css
+    global: false
   tabs.favicons.scale:
     global: 0.75
   tabs.favicons.show:
