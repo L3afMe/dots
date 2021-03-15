@@ -8,55 +8,70 @@ config_version: 2
 settings:
   aliases:
     global:
+      e: open
       q: close
       qa: quit
       w: session-save
       wq: quit --save
       wqa: quit --save
+  backend:
+    global: webengine
   colors.completion.category.bg:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.completion.category.border.bottom:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.completion.category.border.top:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.completion.category.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.completion.even.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.completion.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.completion.item.selected.bg:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.completion.item.selected.border.bottom:
-    global: '#E3DDE0'
+    global: '#EDD7BD'
   colors.completion.item.selected.border.top:
-    global: '#E3DDE0'
+    global: '#EDD7BD'
   colors.completion.item.selected.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.completion.item.selected.match.fg:
-    global: '#E3DDE0'
+    global: '#907AA9'
   colors.completion.match.fg:
-    global: '#E3DDE0'
+    global: '#907AA9'
   colors.completion.odd.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.completion.scrollbar.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.completion.scrollbar.fg:
-    global: '#E3DDE0'
+    global: '#EDD7BD'
+  colors.contextmenu.disabled.bg:
+    global: null
+  colors.contextmenu.disabled.fg:
+    global: null
+  colors.contextmenu.menu.bg:
+    global: null
+  colors.contextmenu.menu.fg:
+    global: null
+  colors.contextmenu.selected.bg:
+    global: null
+  colors.contextmenu.selected.fg:
+    global: null
   colors.downloads.bar.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.downloads.error.bg:
-    global: '#1C1C22'
+    global: '#B4637A'
   colors.downloads.error.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.downloads.start.bg:
-    global: '#1C1C22'
+    global: '#575279'
   colors.downloads.start.fg:
-    global: '#9BC53D'
+    global: '#575279'
   colors.downloads.stop.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.downloads.stop.fg:
-    global: '#EE6055'
+    global: '#232136'
   colors.downloads.system.bg:
     global: rgb
   colors.downloads.system.fg:
@@ -71,124 +86,130 @@ settings:
     global: '#1C1C22'
   colors.keyhint.fg:
     global: '#E3DDE0'
+  colors.keyhint.suffix.fg:
+    global: '#FFFF00'
   colors.messages.error.bg:
-    global: '#EE6055'
+    global: '#B4637A'
   colors.messages.error.border:
-    global: '#EE6055'
+    global: '#B4637A'
   colors.messages.error.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.messages.info.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.messages.info.border:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.messages.info.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.messages.warning.bg:
-    global: '#EEAC55'
+    global: '#EA9D34'
   colors.messages.warning.border:
-    global: '#EEAC55'
+    global: '#EA9D34'
   colors.messages.warning.fg:
-    global: '#1C1C22'
+    global: '#575279'
   colors.prompts.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.prompts.border:
-    global: '1px solid #1C1C22'
+    global: '1px solid #F5E9DA'
   colors.prompts.fg:
-    global: '#E3DDE0'
+    global: '#232136'
   colors.prompts.selected.bg:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.statusbar.caret.bg:
-    global: '#D35F89'
+    global: '#F5E9DA'
   colors.statusbar.caret.fg:
-    global: '#1C1C22'
+    global: '#575279'
   colors.statusbar.caret.selection.bg:
-    global: '#E08FAD'
+    global: '#F5E9DA'
   colors.statusbar.caret.selection.fg:
-    global: '#1C1C22'
+    global: '#575279'
   colors.statusbar.command.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.statusbar.command.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.statusbar.command.private.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.statusbar.command.private.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.statusbar.insert.bg:
-    global: '#9BC53D'
+    global: '#F5E9DA'
   colors.statusbar.insert.fg:
-    global: '#1C1C22'
+    global: '#575279'
   colors.statusbar.normal.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.statusbar.normal.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.statusbar.passthrough.bg:
-    global: '#628395'
+    global: '#F5E9DA'
   colors.statusbar.passthrough.fg:
-    global: '#1C1C22'
+    global: '#575279'
   colors.statusbar.private.bg:
-    global: '#5BC0EB'
+    global: '#F5E9DA'
   colors.statusbar.private.fg:
-    global: '#1C1C22'
+    global: '#575279'
   colors.statusbar.progress.bg:
-    global: '#E3DDE0'
+    global: '#F5E9DA'
   colors.statusbar.url.error.fg:
-    global: '#EE6055'
+    global: '#B4637A'
   colors.statusbar.url.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.statusbar.url.hover.fg:
-    global: '#5BC0EB'
+    global: '#907aa9'
   colors.statusbar.url.success.http.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.statusbar.url.success.https.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.statusbar.url.warn.fg:
-    global: '#FDE74C'
+    global: '#EA9D34'
   colors.tabs.bar.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.tabs.even.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.tabs.even.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.tabs.indicator.error:
-    global: '#EE6055'
+    global: '#B4637A'
   colors.tabs.indicator.start:
-    global: '#628395'
+    global: '#00000000'
   colors.tabs.indicator.stop:
-    global: '#9BC53D'
+    global: '#00000000'
+  colors.tabs.indicator.system:
+    global: none
   colors.tabs.odd.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.tabs.odd.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.tabs.pinned.even.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.tabs.pinned.even.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.tabs.pinned.odd.bg:
-    global: '#1C1C22'
+    global: '#F5E9DA'
   colors.tabs.pinned.odd.fg:
-    global: '#E3DDE0'
+    global: '#575279'
   colors.tabs.pinned.selected.even.bg:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.tabs.pinned.selected.even.fg:
-    global: '#5BC0EB'
+    global: '#575279'
   colors.tabs.pinned.selected.odd.bg:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.tabs.pinned.selected.odd.fg:
-    global: '#5BC0EB'
+    global: '#575279'
   colors.tabs.selected.even.bg:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.tabs.selected.even.fg:
-    global: '#5BC0EB'
+    global: '#575279'
   colors.tabs.selected.odd.bg:
-    global: '#1C1C22'
+    global: '#EDD7BD'
   colors.tabs.selected.odd.fg:
-    global: '#5BC0EB'
+    global: '#575279'
   colors.webpage.bg:
-    global: null
+    global: '#F5E9DA'
   colors.webpage.darkmode.enabled:
     global: false
   colors.webpage.prefers_color_scheme_dark:
     global: true
+  completion.height:
+    global: 30%
   completion.open_categories:
     global:
     - searchengines
@@ -196,38 +217,88 @@ settings:
     - bookmarks
     - history
     - filesystem
+  completion.scrollbar.padding:
+    global: 0
+  content.blocking.adblock.lists:
+    global:
+    - https://easylist.to/easylist/easylist.txt
+    - https://easylist.to/easylist/easyprivacy.txt
+    - https://subscribe.adblockplus.org/?location=https%3A//raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt
+    - https://subscribe.adblockplus.org/?location=https%3A//easylist-downloads.adblockplus.org/fanboy-notifications.txt
+    - https://subscribe.adblockplus.org/?location=https%3A//raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/nocoin.txt
   content.javascript.can_access_clipboard:
     global: true
   content.javascript.enabled:
     global: true
   content.notifications:
     global: false
+  fonts.downloads:
+    global: default_size sans-serif
+  fonts.hints:
+    global: bold default_size sans-serif
+  fonts.keyhint:
+    global: default_size sans-serif
+  fonts.messages.error:
+    global: default_size sans-serif
+  fonts.messages.info:
+    global: default_size sans-serif
+  fonts.messages.warning:
+    global: default_size sans-serif
+  fonts.prompts:
+    global: default_size sans-serif
+  fonts.statusbar:
+    global: 14px sans-serif
+  fonts.tabs.selected:
+    global: 14px sans-serif
+  fonts.tabs.unselected:
+    global: 14px sans-serif
+  hints.padding:
+    global:
+      bottom: 3
+      left: 5
+      right: 5
+      top: 3
+  statusbar.padding:
+    global:
+      bottom: 5
+      left: 10
+      right: 10
+      top: 5
+  statusbar.widgets:
+    global:
+    - keypress
+    - url
+    - progress
   tabs.favicons.scale:
     global: 0.75
   tabs.favicons.show:
     global: never
   tabs.indicator.padding:
     global:
-      bottom: 2
-      left: 4
-      right: 8
-      top: 2
+      bottom: 5
+      left: 5
+      right: 10
+      top: 5
+  tabs.indicator.width:
+    global: 3
   tabs.padding:
     global:
-      bottom: 2
+      bottom: 3
       left: 5
       right: 5
-      top: 2
+      top: 3
   tabs.position:
     global: top
   tabs.show:
-    global: switching
+    global: always
   tabs.show_switching_delay:
     global: 2000
   tabs.title.alignment:
     global: center
   tabs.title.format:
     global: '{audio} {current_title}'
+  tabs.title.format_pinned:
+    global: '{audio} {index} {current_title}'
   tabs.tooltips:
     global: false
   url.searchengines:

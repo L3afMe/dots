@@ -1,5 +1,3 @@
-scriptencoding utf-8
-
 """""""""""""
 "  Folding  "
 """""""""""""
@@ -123,9 +121,6 @@ augroup END
 """""""""""""
 "  Mapping  "
 """""""""""""
-inoremap <silent> jk  <Esc>
-inoremap <silent> JK  <Esc>
-
 nnoremap ; :
 xnoremap ; :
 
@@ -134,6 +129,7 @@ nnoremap <leader>P m`O<ESC>p``
 
 nnoremap <silent> <leader>w :<C-U>update<CR>
 nnoremap <silent> <leader>q :<C-U>x<CR>
+
 nnoremap <silent> <leader>Q :<C-U>qa<CR>
 
 nnoremap <expr> oo printf('m`%so<ESC>``', v:count1)
@@ -161,16 +157,50 @@ inoremap <S-Tab> <ESC><<i
 
 nnoremap <silent> <leader>y :<C-U>%y<CR>
 
+"""""""""""""""
+"  Functions  "
+"""""""""""""""
+let s:showSynEnabled=0
+function! s:ShowSyn(auto)
+    if a:auto == 0 || s:showSynEnabled == 1
+        for i1 in synstack(line("."), col("."))
+            let i2 = synIDtrans(i1)
+            let n1 = synIDattr(i1, "name")
+            let n2 = synIDattr(i2, "name")
+            echo n1 "->" n2
+        endfor
+    endif
+endfunction
+
+function! ShowSynEnable()
+    let s:showSynEnabled = 1
+    call s:ShowSyn(1)
+endfunction
+
+function! ShowSynDisable()
+    let s:showSynEnabled = 0
+endfunction
+
+function! ShowSyn()
+    call s:ShowSyn(0)
+endfunction
+
+map gm :call ShowSyn()<CR>
+map gme :call ShowSynEnable()<CR>
+map gmd :call ShowSynDisable()<CR>
+
 """""""""""""
 "  Options  "
 """""""""""""
 "" General
+set termguicolors
+
 set splitbelow splitright
 
 set timeoutlen=300
 set updatetime=300
 
-set cmdheight=2
+set cmdheight=1
 
 set noswapfile
 
@@ -179,16 +209,10 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-set foldmethod=syntax
-set foldlevelstart=99
-augroup fold_vimrc
-  autocmd!
-  autocmd FileType vim 
-              \ set foldlevelstart=0 |
-              \ setlocal foldmethod=expr |
-              \ setlocal foldexpr=VimFolds(v:lnum) |
-              \ setlocal foldtext=VimFoldText()
-augroup END
+set foldlevelstart=0
+set foldmethod=expr
+set foldexpr=VimFolds(v:lnum)
+set foldtext=VimFoldText()
 
 set number relativenumber
 
@@ -296,6 +320,7 @@ augroup END
 """""""""""""
 "  Plugins  "
 """""""""""""
+" TODO: Test
 let g:plugin_home=expand(stdpath('data') . '/plugged')
 "" Install plugins
 if empty(readdir(g:plugin_home))
@@ -326,6 +351,11 @@ Plug 'lervag/vimtex'
 " Lua
 Plug 'tbastos/vim-lua'
 
+" Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 """ Search
 " Clear highlighting automatically
 Plug 'romainl/vim-cool'
@@ -335,7 +365,6 @@ Plug 'haya14busa/vim-asterisk'
 
 """ UI
 " Themes
-Plug 'ap/vim-css-color'
 Plug 'arcticicestudio/nord-vim'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'ajmwagar/vim-deus'
@@ -349,9 +378,16 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'nightsense/strawberry'
 Plug 'cocopon/iceberg.vim'
 
-" Other misc UI plugins
-Plug 'vim-airline/vim-airline'
+" Display hightlight group names and heirachy
+Plug 'cocopon/Inspecthi.vim'
+
+" Preview RGB colors
+Plug 'norcalli/nvim-colorizer.lua'
+
+" Nicer start screen
 Plug 'mhinz/vim-startify'
+
+" Better syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 """ File Editing
@@ -381,6 +417,9 @@ Plug 'nvim-telescope/telescope.nvim'
 
 "" Configure plugins
 call plug#end()
+
+""" Theme
+colorscheme rose-pine-dawn-v2
 
 """ coc.nvim
 inoremap <silent><expr> <TAB>
@@ -437,9 +476,6 @@ map gz* <Plug>(asterisk-gz*)
 map z#  <Plug>(asterisk-z#)
 map gz# <Plug>(asterisk-gz#)
 
-""" vim-airline
-let g:airline#extensions#tabline#enabled = 1
-
 """ vim-startify
 function! s:gitModified()
     let files = systemlist('git ls-files -m 2>/dev/null')
@@ -485,9 +521,6 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-""" Theme
-colorscheme rose-pine-light
-
 """ vim-go
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
@@ -499,3 +532,8 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
+
+""" markdown-preview.nvim
+let g:mkdp_auto_start = 1
+let g:mkdp_browser = 'qutebrowser'
+let g:mkdp_page_title = '${name}'

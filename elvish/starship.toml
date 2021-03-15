@@ -1,6 +1,6 @@
 add_newline = true
-#format = "[](bold black)[$git_branch$directory](bold bg:black fg:white) "
-format = "[$git_branch$directory |](bold black) "
+#format = "[](bold lblack)[$git_branch$directory](bold bg:black fg:white) "
+format = "[$git_branch$directory |](bold bright-black) "
 
 [git_branch]
 format = " "

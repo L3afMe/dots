@@ -8,14 +8,14 @@ RESET='\033[0m'
 
 # Prompt yes/no
 function prompt_yn {
-	while true
-	do
-		read -p "$* [y/n]: " yn
-		case $yn in
-			[Yy]*) return 1 ;;
-			[Nn]*) return 0 ;;
-		esac
-	done
+    while true
+    do
+        read -p "$* [y/n]: " yn
+        case $yn in
+            [Yy]*) return 1 ;;
+            [Nn]*) return 0 ;;
+        esac
+    done
 }
 
 # Update outdated packages
@@ -25,49 +25,63 @@ sudo pacman -Sqyu --noprogressbar
 # Setup pacman packages
 echo -e " -- Installing pacman packages"
 sudo pacman -Sq --noconfirm --needed --noprogressbar \
-	git         \
-	hub         \
-	bat         \
-	exa         \
-	starship    \
-	qutebrowser \
-	kitty       \
-	xmonad      \
-	base-devel  \
-	nodejs      \
-	npm         \
-	ruby        \
-	python      \
-	python-pip
+    git               \
+    hub               \
+    bat               \
+    exa               \
+    starship          \
+    qutebrowser       \
+    zathura           \
+    kitty             \
+    xmonad            \
+    xmonad-contrib    \
+    picom             \
+    rofi              \
+    base-devel        \
+    nodejs            \
+    npm               \
+    ruby              \
+    python            \
+    python-pip        \
+    zathura-pdf-mupdf
 
 # Check for yay
 echo -e " -- Checking for yay"
 if ! command -v yay &> /dev/null
 then
-	# Install yay
-	echo -e " -- Installing yay"
-	cd /opt
-	sudo git clone https://aur.archlinux.org/yay.git
-	CUR_USER=$(whoami)
-	sudo chown -R $CURUSER:users ./yay
-	cd yay
-	makepkg -si
+    # Install yay
+    echo -e " -- Installing yay"
+    cd /opt
+    sudo git clone https://aur.archlinux.org/yay.git
+    CUR_USER=$(whoami)
+    sudo chown -R $CURUSER:users ./yay
+    cd yay
+    makepkg -si
 fi
 
 # Setup yay packages
 echo -e " -- Installing AUR packages with yay"
 yay -Sq --batchinstall --sudoloop   --noupgrademenu \
-	--nocleanmenu  --noeditmenu --norebuild     \
-	--noredownload --noconfirm  --noprogressbar \
-	elvish
+        --nocleanmenu  --noeditmenu --norebuild     \
+        --noredownload --noconfirm  --noprogressbar \
+    elvish       \
+    qt5-webkit   \
+    texlive-most
 
 # Set default shell for all users
 echo -e " -- Setting default to Elvish"
 ELVISH_PATH=$(command -v elvish)
 for USER in $(grep -v -e 'nologin' -e 'git-shell' -e "$ELVISH_PATH" /etc/passwd | sed 's/:.*//g')
 do
-	sudo chsh --shell $ELVISH_PATH $USER
+    sudo chsh --shell $ELVISH_PATH $USER
 done
+
+# Install rustup and nightly Rust
+echo -e " -- Installing Rust"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
+sh rustup.sh -qy --default-toolchain nightly
+cargo install cargo-edit
+rm rustup.sh
 
 # Install neovim dependencies
 echo -e " -- Installing neovim dependencies"
@@ -79,8 +93,8 @@ echo "python3 -m pip list" | grep -q 'pynvim' || python3 -m pip install pynvim
 VIM_PLUG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload"
 if [ ! -d $VIM_PLUG_DIR ]
 then
-	echo -e " -- Installing vim-plug"
-	sh -c 'curl -sfLo "$VIM_PLUG_DIR/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    echo -e " -- Installing vim-plug"
+    sh -c 'curl -sfLo "$VIM_PLUG_DIR/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 fi
 
 # Clone repo
@@ -89,15 +103,15 @@ cd ~
 # Check that there's no dots directory already
 if [ -d 'dots' ]
 then
-	# If exists prompt if should remove
-	echo -e "${RED} !! ~/dots already exists${RESET}"
-	if prompt_yn " ?? Remove current ~/dots directory?"
-	then
-		echo -e "${RED} !! Aborted install${RESET}"
-		exit
-	fi
+    # If exists prompt if should remove
+    echo -e "${RED} !! ~/dots already exists${RESET}"
+    if prompt_yn " ?? Remove current ~/dots directory?"
+    then
+        echo -e "${RED} !! Aborted install${RESET}"
+        exit
+    fi
 
-	rm -rf dots
+    rm -rf dots
 fi
 echo -e " -- Cloning L3afMe/dots to ~/dots"
 git clone -q https://github.com/L3afMe/dots
@@ -107,37 +121,52 @@ BACKUP=0
 CONFIG_PATH=${XDG_CONFIG_HOME:-.config}
 if ! prompt_yn " ?? Backup old config?"
 then
-	mkdir "dots/backup"
-	BACKUP=1
+    mkdir "dots/backup"
+    BACKUP=1
 fi
 
-# Backup or remove old config
+# Backup and remove old config
+if [ -f ".xinitrc" ]
+then
+    if [ $BACKUP == 1 ]
+    then
+        echo -e " -- Backing up old xinitrc"
+        mv .xinitrc dots/backup/xinitrc
+    fi
+
+    echo -e " -- Removing old xinitrc"
+    rm .xinitrc
+fi
+
 if [ -d ".elvish" ]
 then
-	if [ $BACKUP == 1 ]
-	then
-		echo -e " -- Backing up old elvish config"
-		mv .elvish dots/backup/elvish
-	fi
+    if [ $BACKUP == 1 ]
+    then
+        echo -e " -- Backing up old elvish config"
+        mv .elvish dots/backup/elvish
+    fi
 
-	echo -e " -- Removing old elvish config"
-	rm -rf .elvish
+    echo -e " -- Removing old elvish config"
+    rm -rf .elvish
 fi
 
 for DIR in kitty nvim qutebrowser
 do
-	if [ -d "$CONFIG_PATH/$DIR" ]
-	then
-		if [ $BACKUP == 1 ]
-		then
-			echo -e " -- Backing up old $DIR config"
-			mv "$CONFIG_PATH/$DIR" "dots/backup/"
-		fi
+    if [ -d "$CONFIG_PATH/$DIR" ]
+    then
+        if [ $BACKUP == 1 ]
+        then
+            echo -e " -- Backing up old $DIR config"
+            mv "$CONFIG_PATH/$DIR" "dots/backup/"
+        fi
 
-		echo -e " -- Removing old $DIR config"
-		rm -rf "$CONFIG_PATH/$DIR"
-	fi
+        echo -e " -- Removing old $DIR config"
+        rm -rf "$CONFIG_PATH/$DIR"
+    fi
 done
+
+echo -e " -- Setting up X"
+ln -s ~/dots/xinitrc .xinitrc
 
 # Setup Elvish
 echo -e " -- Setting up Elvish"

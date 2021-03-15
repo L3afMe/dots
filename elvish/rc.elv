@@ -4,14 +4,16 @@ use path
 use str
 use math
 
+
 set E:LANG = us_NZ.UTF-8
 set E:LC_ALL = $E:LANG
 
-set E:QT_PLUGIN_PATH = /usr/lib/qt/plugins
-
-set E:GOPATH = ~/go
-
-set E:QMK_HOME = /opt/qmk_firmware
+set E:XDG_CONFIG_HOME    = $E:HOME/.config
+set E:QT_PLUGIN_PATH     = /usr/lib/qt/plugins
+set E:GOPATH             = ~/go
+set E:XINITRC            = $E:XDG_CONFIG_HOME/x11/xinitrc
+set E:XMONAD_CONFIG_HOME = $E:XDG_CONFIG_HOME/xmonad
+set E:QMK_HOME           = /opt/qmk_firmware
 
 paths = [
   $E:GOPATH/bin
@@ -94,6 +96,25 @@ fn ls [@_args]{
         :else             $o
       ]
   } $_args)
+}
+
+fn border_image [@_args]{
+  convert $_args[0] -bordercolor '#'EDD7BD -border 4 +repage $_args[0]
+  convert $_args[0] '(' +clone -background '#232136' -shadow 70x10+6+6 ')' +swap -background none -layers merge +repage $_args[0]
+}
+
+fn screenshot []{
+  maim > /tmp/.elv.screenshot.png;
+  border_image /tmp/.elv.screenshot.png;
+  xclip -selection clipboard -t image/png /tmp/.elv.screenshot.png;
+  rm /tmp/.elv.screenshot.png
+}
+
+fn screenshot-selection []{
+  maim -s > /tmp/.elv.screenshot.png;
+  border_image /tmp/.elv.screenshot.png;
+  xclip -selection clipboard -t image/png /tmp/.elv.screenshot.png;
+  rm /tmp/.elv.screenshot.png
 }
 
 fn cdc [@_args]{ cd $_args[0]; clear }
