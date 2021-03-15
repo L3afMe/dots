@@ -1,0 +1,49 @@
+* {
+     highlight: #F2E9DE;
+    highlightd: #EDD7BD;
+     textLight: #575279;
+      textDark: #232136;
+          base: #FAF4ED;
+          love: #B4637A;
+           sun: #EA9D34;
+          iris: #907AA9;
+          foam: #56949F;
+          rose: #D7827E;
+        subtle: #C4A7E7;
+         faded: #CECAED;
+
+    background-color: @highlight;
+    border-color: @highlightd;
+    text-color: @iris;
+    spacing: 0;
+    width: 512px;
+}
+
+window {
+    border: 4;
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+prompt {
+  padding: 8px 8px 8px 24px;
+}
+
+entry,
+textbox {
+  padding: 8px;
+}
+
+listview {
+  scrollbar: false;
+}
+
+element {
+  padding: 4px 4px 4px 16px;
+}
+
+element selected {
+  background-color: @highlightd;
+}

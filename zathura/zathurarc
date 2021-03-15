@@ -1,0 +1,47 @@
+# Clipboard
+set selection-clipboard clipboard
+
+# Scrolling
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+# Zoom
+set zoom-min 25
+set guioptions ""
+
+# Theme
+set font "Fira Code Regular 10"
+set default-bg "#FAF4ED" #00
+set default-fg "#232136" #01
+
+set statusbar-fg "#FAF4ED" #04
+set statusbar-bg "#232136" #01
+
+set inputbar-bg "#FAF4ED"
+set inputbar-fg "#232136"
+
+set notification-error-bg "#B4637A"
+set notification-error-fg "#232136"
+
+set notification-warning-bg "#EA9D34"
+set notification-warning-fg "#232136"
+
+set highlight-color "#EDD7BD"
+set highlight-active-color "#232136"
+
+set completion-highlight-bg "#EDD7BD"
+set completion-highlight-fg "#232136"
+
+set completion-group-bg "#EDD7BD"
+set completion-group-fg "#232136"
+
+set completion-bg "#FAF4ED"
+set completion-fg "#232136"
+
+set notification-bg "#FAF4ED"
+set notification-fg "#232136"
+
+set render-loading-bg "#FAF4ED"
+set render-loading-fg "#232136"
