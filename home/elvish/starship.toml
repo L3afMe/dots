@@ -1,0 +1,11 @@
+add_newline = true
+#format = "[](bold lblack)[$git_branch$directory](bold bg:black fg:white) "
+format = "[$git_branch$directory |](bold bright-black) "
+
+[git_branch]
+format = " "
+
+[directory]
+format = "$path"
+truncation_length = 2
+truncation_symbol = "…/"
