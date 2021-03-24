@@ -1,0 +1,13 @@
+set PROMPT "{WD} | "
+
+set P_HOME_TRUNC true
+set P_HOME_CHAR  "~"
+
+set P_DIR_TRUNC 2
+set P_DIR_CHAR  "…"
+
+set SYN_HIGHLIGHTING true
+
+alias set say "echo \"Computer says:\""
+
+set ENV:MANPAGER "sh -c 'col -bx | bat --theme ansi -l man -p'"

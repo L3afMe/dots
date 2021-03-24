@@ -29,6 +29,8 @@ sudo pacman -Sq --noconfirm --needed --noprogressbar \
     hub               \
     bat               \
     exa               \
+    maim              \
+    imagemagick       \
     starship          \
     qutebrowser       \
     zathura           \
@@ -64,9 +66,10 @@ echo -e " -- Installing AUR packages with yay"
 yay -Sq --batchinstall --sudoloop   --noupgrademenu \
         --nocleanmenu  --noeditmenu --norebuild     \
         --noredownload --noconfirm  --noprogressbar \
-    elvish       \
-    qt5-webkit   \
-    texlive-most
+    elvish                      \
+    qt5-webkit                  \
+    texlive-most                \
+    discord-canary-electron-bin
 
 # Set default shell for all users
 echo -e " -- Setting default to Elvish"

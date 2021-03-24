@@ -365,6 +365,7 @@ Plug 'haya14busa/vim-asterisk'
 
 """ UI
 " Themes
+Plug 'L3afMe/rose-pine-sepia-nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'ajmwagar/vim-deus'
@@ -419,7 +420,7 @@ Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 """ Theme
-colorscheme rose-pine-dawn-v2
+colorscheme rose-pine-sepia
 
 """ coc.nvim
 inoremap <silent><expr> <TAB>
