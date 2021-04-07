@@ -1,60 +1,45 @@
-{config, pkgs ? import <nixpkgs> {
-  config.android_sdk.accept_license = true;
-}, ...}:
+{ config, pkgs, lib, ... }:
 
 let
   theme = import ./theme.nix;
 in
 
 {
-  imports = [./hardware-configuration.nix];
+  imports = [ ./hardware-configuration.nix ];
 
-  nix.trustedUsers = [
-    "root" "l3af"
-  ];
-
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-
-    grub = {
-      enable = true;
-      device = "nodev";
-      efiSupport = true;
-      useOSProber = false;
-    };
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    device = "/dev/sda";
   };
-
-  environment = {
-    variables.EDITOR = "nvim";
-  };
-
-  programs.adb.enable = true;
 
   networking = {
     hostName = "L3af-NixOS";
-    wireless.enable = true;
+    wireless.enable = false;
 
     useDHCP = false;
-    interfaces.enp1s0f0.useDHCP = true;
+    interfaces = {
+      enp4s0.useDHCP = true;
+      wlp2s0b1.useDHCP = true;
+    };
   };
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-  #   font = "Lat2-Terminus16";
-    keyMap = "dvp";
+    font = "Lat2-Terminus16";
+    useXkbConfig = true;
+    earlySetup = true;
+    colors = theme.colors16;
   };
 
-  # X11 Config
   services.xserver = {
     enable = true;
-    
+
     layout = "us";
     xkbVariant = "dvp";
     xkbOptions = "caps:escape";
 
-    # Disable touchpad to make me suffer
-    libinput.enable = false;
+    libinput.enable = true;
 
     displayManager = {
       sddm.enable = true;
@@ -63,42 +48,50 @@ in
 
     windowManager.awesome = {
       enable = true;
+
       luaModules = with pkgs.luaPackages; [
         luarocks
       ];
     };
   };
 
-  console = {
-    earlySetup = true;
-    colors = theme.colors16;
-  };
-
-  # Enable sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Define a user account
   users.users.l3af = {
     isNormalUser = true;
     extraGroups = [
       "wheel"
       "adbusers"
     ];
-    shell = "/usr/bin/bransh";
+    shell = /usr/bin/bransh;
   };
 
-  nixpkgs.config = {
-    # Required for broadcom-sta
-    allowUnfree = true;
+  # Allow unfree for certain packages
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "android-studio-stable"
+  ];
 
-    android_sdk.accept_license = true;
+  programs = {
+    adb.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    adoptopenjdk-hotspot-bin-8
+    android-studio
+    gcc
+    git
+    qutebrowser
+  ];
 
   fonts.fonts = with pkgs; [
     fira-code
     fira-code-symbols
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+      ];
+    })
   ];
 
   system.stateVersion = "20.09";

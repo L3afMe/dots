@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
-
+ 
 {
+  imports = import ./programs/default.nix;
+
   programs.home-manager.enable = true;
 
   home = {
@@ -9,7 +11,8 @@
 
     packages = with pkgs; [
       neovim-nightly
-      python3
+      yarn
+      rustup
     ];
   };
 
@@ -20,16 +23,14 @@
     withPython = true;
     withNodeJs = true;
 
-    # Override bad editors :p
     viAlias = true;
     vimAlias = true;
   };
 
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
+    (import ./overlays/neovim-nightly.nix)
   ];
 
+  news.display = "silent";
   home.stateVersion = "21.03";
 }

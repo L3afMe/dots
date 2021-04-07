@@ -356,6 +356,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+" Smali
+Plug 'mzlogin/vim-smali'
+
+" Nix
+Plug 'LnL7/vim-nix'
+
 """ Search
 " Clear highlighting automatically
 Plug 'romainl/vim-cool'
