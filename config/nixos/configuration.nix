@@ -5,7 +5,10 @@ let
 in
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./udev.nix
+  ];
 
   boot.loader.grub = {
     enable = true;
@@ -27,17 +30,12 @@ in
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-    useXkbConfig = true;
     earlySetup = true;
     colors = theme.colors16;
   };
 
   services.xserver = {
     enable = true;
-
-    layout = "us";
-    xkbVariant = "dvp";
-    xkbOptions = "caps:escape";
 
     libinput.enable = true;
 
@@ -64,7 +62,6 @@ in
       "wheel"
       "adbusers"
     ];
-    shell = /usr/bin/bransh;
   };
 
   # Allow unfree for certain packages
@@ -81,7 +78,10 @@ in
     android-studio
     gcc
     git
+    maim
     qutebrowser
+    cargo-edit
+    cargo-watch
   ];
 
   fonts.fonts = with pkgs; [

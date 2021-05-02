@@ -13,6 +13,10 @@
       neovim-nightly
       yarn
       rustup
+
+      python38Full
+      python38Packages.pip
+      python38Packages.setuptools
     ];
   };
 
