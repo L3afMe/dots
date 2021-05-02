@@ -216,8 +216,6 @@ set foldtext=VimFoldText()
 
 set number relativenumber
 
-set ignorecase smartcase
-
 set fileencoding=utf-8
 
 set linebreak
@@ -277,6 +275,12 @@ set isfname-==
 set isfname-=,
 
 "" Language Specific
+""" Smali
+augroup smali
+    autocmd!
+
+augroup END
+
 """ LaTeX
 let g:tex_flavor='latex'
 augroup latex
@@ -334,6 +338,7 @@ endif
 call plug#begin(g:plugin_home)
 
 """ Autocomplete
+Plug 'neovim/nvim-lspconfig'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 """ Language Specific
@@ -428,7 +433,33 @@ call plug#end()
 """ Theme
 colorscheme rose-pine-sepia
 
+""" nvim-lspconfig
+lua << EOF
+local lspconfig = require'lspconfig'
+local configs = require'lspconfig/configs'
+if not lspconfig.smali_lsp then
+  configs.smali_lsp = {
+    default_config = {
+      cmd = {'/home/l3af/Projects/Rust/smali-lsp/target/debug/smali-lsp'};
+      filetypes = {
+                \   'smali'
+                \ };
+      root_dir = function(fname)
+        root_dir = lspconfig.util.root_pattern('AndroidManifest.xml'); 
+      end;
+      settings = {
+               \ 
+               \ };
+    };
+  }
+end
+lspconfig.smali_lsp.setup{}
+
+EOF
+
 """ coc.nvim
+set runtimepath^=/home/l3af/Projects/TypeScript/coc-smali
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

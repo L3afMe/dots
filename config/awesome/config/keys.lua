@@ -2,8 +2,7 @@ local gears         = require("gears")
 local awful         = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
                       require("awful.hotkeys_popup.keys")
-
-modkey = "Mod4"
+modkey = "Mod1"
 
 globalkeys = gears.table.join(
     -- Launcher
@@ -39,7 +38,7 @@ globalkeys = gears.table.join(
               {description = "Swap previous",     group = "Awesome: Client"}),
     awful.key({ modkey,           }, "u",         awful.client.urgent.jumpto,
               {description = "Jump to urgent",    group = "Awesome: Client"}),
-    awful.key({ modkey, "Shift"   }, "c",         function() client.focus:kill() end,
+    awful.key({ modkey,           }, "q",         function() client.focus:kill() end,
               {description = "Close",             group = "Awesome: Client"}),
     awful.key({ modkey, "Control" }, "space",     awful.client.floating.toggle                     ,
               {description = "Toggle floating",   group = "Awesome: Client"}),
