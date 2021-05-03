@@ -10,10 +10,30 @@ in
     ./udev.nix
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    device = "/dev/sda";
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    
+    grub = {
+      enable = true;
+
+      devices = [ "nodev" ];
+      efiSupport = true;
+      version = 2;
+
+      extraEntries = ''
+        menuentry "Windows" {
+          insmod part_gpt
+          insmod fat
+          insmod search_fs_uuid
+          insmod chain
+          search --fs-uuid --set=root F4D8B09BD8B05D94
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
+    };
   };
 
   networking = {
