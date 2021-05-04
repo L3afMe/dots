@@ -11,28 +11,26 @@ in
   ];
 
   boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
+    # efi.canTouchEfiVariables = true;
     
     grub = {
       enable = true;
 
-      devices = [ "nodev" ];
-      efiSupport = true;
       version = 2;
+      useOSProber = true;
+      device = "/dev/sda";
+      # efiSupport = true;
 
-      extraEntries = ''
-        menuentry "Windows" {
-          insmod part_gpt
-          insmod fat
-          insmod search_fs_uuid
-          insmod chain
-          search --fs-uuid --set=root F4D8B09BD8B05D94
-          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-        }
-      '';
+      # extraEntries = ''
+      #   menuentry "Windows" {
+      #     insmod part_gpt
+      #     insmod fat
+      #     insmod search_fs_uuid
+      #     insmod chain
+      #     search --fs-uuid --set=root F4D8B09BD8B05D94
+      #     chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+      #   }
+      # '';
     };
   };
 
@@ -42,8 +40,7 @@ in
 
     useDHCP = false;
     interfaces = {
-      enp4s0.useDHCP = true;
-      wlp2s0b1.useDHCP = true;
+      enp0s25.useDHCP = true;
     };
   };
 
@@ -86,7 +83,7 @@ in
 
   # Allow unfree for certain packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "android-studio-stable"
+    # "android-studio-stable"
   ];
 
   programs = {
@@ -95,9 +92,10 @@ in
 
   environment.systemPackages = with pkgs; [
     adoptopenjdk-hotspot-bin-8
-    android-studio
+    # android-studio
     gcc
     git
+    kitty
     maim
     qutebrowser
     cargo-edit
