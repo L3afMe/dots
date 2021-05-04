@@ -18,17 +18,10 @@
       python38Packages.pip
       python38Packages.setuptools
     ];
-  };
 
-  programs.neovim = {
-    enable = true;
-    package = pkgs.neovim-nightly;
-
-    withPython = true;
-    withNodeJs = true;
-
-    viAlias = true;
-    vimAlias = true;
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
   };
 
   nixpkgs.overlays = [

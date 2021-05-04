@@ -9,6 +9,8 @@
     ];
 
     programs.git = {
+      enable = true;
+
       userName = "L3af";
       userEmail = "L3afMeAlone";
 
